@@ -55,9 +55,9 @@ struct env_md_st
 typedef struct hmac_ctx_st
     {
     const EVP_MD *md;
-    EVP_MD_CTX md_ctx;
-    EVP_MD_CTX i_ctx;
-    EVP_MD_CTX o_ctx;
+    struct env_md_ctx_st md_ctx;
+    struct env_md_ctx_st i_ctx;
+    struct env_md_ctx_st o_ctx;
     unsigned int key_length;
     unsigned char key[128];
     } HMAC_CTX;
@@ -108,7 +108,7 @@ else
         C.HMAC_CTX_init(ctx)
         return ctx
     end
-    ctx_free = function (ctx) 
+    ctx_free = function (ctx)
         C.HMAC_CTX_cleanup(ctx)
     end
 end
